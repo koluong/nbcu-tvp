@@ -9,8 +9,4 @@ router.get('/home', (req, res) => {
   res.render('web/home');
 });
 
-router.get('/request/new', (req, res) => {
-  res.render('orders/form');
-});
-
 module.exports = router;

@@ -3,13 +3,13 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const flash = require('connect-flash');
-const LocalStragety = require('passport-local');
 const methodOverride = require('method-override');
 
 const config = require('./config');
 
 // require routes
 const indexRoutes = require('./app/routes/index');
+const requestRoutes = require('./app/routes/request');
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.mongooseUri, { useMongoClient: true });
@@ -30,6 +30,7 @@ app.use(express.static(`${__dirname}/public`));
 app.use(methodOverride('_method'));
 
 app.use('/', indexRoutes);
+app.use('/request', requestRoutes);
 
 app.get('*', (req, res) => {
   res.send('404 Not Found');
