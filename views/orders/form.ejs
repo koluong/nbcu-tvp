@@ -1,0 +1,280 @@
+<% include ../partials/header %>
+  <div class="container">
+    <br>
+    <h1 style="">Equipment Request Form</h1>
+    <hr>
+    <form action="/request" method="post">
+      <div class="form-group">
+        <!-- Requestor Information -->
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="nameContact">Name of Requestor
+                <span style="color: rgb(206, 0, 0)">*</span>
+              </label>
+              <input required type="text" class="form-control" name="request[nameContact]" id="nameContact" placeholder="John Doe">
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="emailContact">Email Contact
+                <span style="color: rgb(206, 0, 0)">*</span>
+              </label>
+              <input required type="text" class="form-control" name="request[emailContact]" id="emailContact" placeholder="john.doe@nbcuni.com">
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="phoneContact">Phone Contact
+                <span style="color: rgb(206, 0, 0)">*</span>
+              </label>
+              <input required type="tel" class="form-control" name="request[phoneContact]" id="phoneContact" placeholder="(818)777-7777">
+            </div>
+          </div>
+        </div>
+        <!-- Production Information -->
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="production">Name of Production
+                <span style="color: rgb(206, 0, 0)">*</span>
+              </label>
+              <input required type="text" class="form-control" name="request[production]" id="production" placeholder="NBCUniversal Production">
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="productionEmail">Production Email
+                <span style="color: rgb(206, 0, 0)">*</span>
+              </label>
+              <input required type="text" class="form-control" name="request[productionEmail]" id="productionEmailproductionEmail" placeholder="nbc.prod@nbcuni.com">
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="productionPhone">Production Phone</label>
+              <input type="text" class="form-control" name="request[productionPhone]" id="productionPhone" placeholder="(818)777-7777">
+            </div>
+          </div>
+        </div>
+        <!-- Department Information -->
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="department">Department
+                <span style="color: rgb(206, 0, 0)">*</span>
+              </label>
+              <select required id="department" name="request[department]" class="form-control">
+                <option value="" disabled selected>
+                  Choose your department
+                </option>
+                <option value="accounting">Accounting</option>
+                <option value="production">Production</option>
+                <option value="casting">Casting</option>
+                <option value="transportation">Transportation</option>
+                <option value="writers2">Writers</option>
+                <option value="location">Location Manager</option>
+                <option value="smartstart">Smart Start (DSP)</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-5">
+            <div class="form-group">
+              <label for="location">Delivery Address
+                <span style="color: rgb(206, 0, 0)">*</span>
+              </label>
+              <small class="form-text text-muted">Include building number if necessary</small>
+              <input required type="text" class="form-control" name="request[location]" id="location" placeholder="10 Universal City Plaza, Universal City, CA 91608">
+            </div>
+          </div>
+          <div class="col-sm-3.5">
+            <div class="form-group">
+              <label for="isLocal">Select One
+                <span style="color: rgb(206, 0, 0)">*</span>
+              </label>
+              <select required type="checkbox" class="form-control" name="isLocal" id="isLocal">
+                <option value="" disabled selected>
+                  Located in Universal City?
+                </option>
+                <option value="true">Yes</option>
+                <option value="false">No (outside Universal City)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <!-- Equipment Information -->
+        <!-- first row -->
+        <label for="">Equipment Type
+          <span style="color: rgb(206, 0, 0)">*</span>
+        </label>
+        <div class="row form-row align-items-center">
+          <div class="col-sm-3">
+            <label class="sr-only" for="macDesktop"></label>
+            <div class="input-group">
+              <div class="input-group-addon">Mac Desktop</div>
+              <input required type="number" class="form-control" name="request[equipment][macDesktop]" id="macDesktop" value="0">
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <label class="sr-only" for="macLaptop"></label>
+            <div class="input-group">
+              <div class="input-group-addon">Mac Laptop</div>
+              <input required type="number" class="form-control" name="request[equipment][macLaptop]" id="macLaptop" value="0">
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <label class="sr-only" for="pcDesktop"></label>
+            <div class="input-group mb-2 mb-sm-0">
+              <div class="input-group-addon">PC Desktop</div>
+              <input required type="number" class="form-control" name="request[equipment][pcDesktop]" id="pcDesktop" value="0">
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <label class="sr-only" for="pcLaptop"></label>
+            <div class="input-group mb-2 mb-sm-0">
+              <div class="input-group-addon">PC Laptop</div>
+              <input required type="number" class="form-control" name="request[equipment][pcLaptop]" id="pcLaptop" value="0">
+            </div>
+          </div>
+        </div>
+        <br>
+        <!-- second row -->
+        <div class="row form-row align-items-center">
+          <div class="col-sm-3">
+            <label class="sr-only" for="printer"></label>
+            <div class="input-group">
+              <div class="input-group-addon">Printer</div>
+              <input required type="number" class="form-control" name="request[equipment][printer]" id="printer" value="0">
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <label class="sr-only" for="monitor"></label>
+            <div class="input-group">
+              <div class="input-group-addon">Monitor</div>
+              <input required required type="number" class="form-control" name="request[equipment][monitor]" id="monitor" value="0">
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <label class="sr-only" for="ipad"></label>
+            <div class="input-group mb-2 mb-sm-0">
+              <div class="input-group-addon">iPad</div>
+              <input required required type="number" class="form-control" name="request[equipment][ipad]" id="ipad" value="0">
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <label class="sr-only" for="tv"></label>
+            <div class="input-group mb-2 mb-sm-0">
+              <div class="input-group-addon">Television</div>
+              <input required type="number" class="form-control" name="request[equipment][tv]" id="tv" value="0">
+            </div>
+          </div>
+        </div>
+        <br>
+        <!-- Detail Information -->
+        <div class="row">
+          <div class="col-md-12">
+            <label for="detail">Request Details
+              <span style="color: rgb(206, 0, 0)">*</span>
+            </label>
+            <small class="form-text text-muted">Name of user - Equipment type - Additional information if necessary (seperate by new line)</small>
+            <textarea required type="tex" class="form-control" name="request[detail]" id="detail" placeholder="John Doe - MacBook Pro - Need to install Movie Magic "
+              rows="8"></textarea>
+          </div>
+        </div>
+        <br>
+        <!-- Date, Time, Division -->
+        <div class="row">
+          <div class="col-md-5">
+            <div class="form-group">
+              <label for="dateBy"> Date Needed By
+                <span style="color: rgb(206, 0, 0)">*</span>
+              </label>
+              <small class="form-text text-muted">We ask that you allow a 3 business day turn-around on all individual equipment requests. Multiple device requests
+                must adhere to the followin - (2-5 Devices) must be made 5 (five) business days in advance - (5-20 Devices)
+                must be made 10 (ten) business days in advance</small>
+              <input required type="date" class="form-control" name="request[dateBy]" id="dateBy" placeholder="mm/dd/yyyy">
+            </div>
+          </div>
+          <div class="col-md-7">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="timeZone">Time Zone
+                    <span style="color: rgb(206, 0, 0)">*</span>
+                  </label>
+                  <small class="form-text text-muted">Please choose the time Zone where the equipment will be going to</small>
+                  <select required type="text" class="form-control" name="request[timeZone]" id="timeZone">
+                    <option value="" disabled selected>
+                      Select a time zone
+                    </option>
+                    <option value="eastern">Eastern (East Coast)</option>
+                    <option value="mountain">Mountain (West Coast)</option>
+                    <option value="central">Central (East Coast)</option>
+                    <option value="pacific">Pacific (West Coast)</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="timeZone">Business Divsion
+                    <span style="color: rgb(206, 0, 0)">*</span>
+                  </label>
+                  <small class="form-text text-muted">Please choose the area business you are requesting for</small>
+                  <select required type="text" class="form-control" name="request[timeZone]" id="timeZone">
+                    <option value="" disabled selected>
+                      Select a division
+                    </option>
+                    <option value="uta">UTA</option>
+                    <option value="ucp">UCP</option>
+                    <option value="ut">UT</option>
+                    <option value="wilshire">Wilshire</option>
+                    <option value="term">Term Deals</option>
+                  </select>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- Policy Guidelines -->
+        <hr>
+        <div class="container">
+          <h2>NBC Universal Policy</h2>
+          <p>
+            The receiver of this equipment is responsible for reading and adhering to the guidelines outlined below:
+          </p>
+          <h4>Hardware</h4>
+          <p>
+            The Receiver’s Business unit is responsible for the full cost of repair or replacement of any or all of the Equipment that
+            is damaged, lost, or stolen from the time equipment is received until it is returned to the TV Production IT
+            Client Services (TVP) Team. If the Equipment is lost, stolen or damaged, the receiver agrees to promptly notify
+            the TVP team at
+            <a href="mailto:tvp.support@nbcuni.com">tvp.support@nbcuni.com</a>.
+          </p>
+          <h4>Software</h4>
+          <p>
+            All NBCUniversal computers are delivered with standard configuration and pre-installed software. Certain software components
+            are critical to the secure operation of your computer. NBCUniversal workers must never attempt to disable, modify
+            or uninstall security and management software. In addition, NBCUniversal workers must not create additional “User
+            Accounts” or tamper with the accounts that were pre-configured by the TVP team.
+          </p>
+          <h4>Support and Maintenance </h4>
+          <p>
+            Technical support can be obtained by calling the NBCU Global Service Desk at
+            <a href="tel:+1-818-777-4887">(818)777-4887</a> or by contacting the TVP team directly at
+            <a href="mailto:tvp.support@nbcuni.com">tvp.support@nbcuni.com</a>.
+          </p>
+          <h4>Return of Equipment and Software</h4>
+          <p>
+            At the end of the season or end of employment with the company, you must return any NBCUniversal-owned computer equipment,
+            communication devices or software. The equipment and software should be returned in good working order with software
+            and related accessories. Arrangements must be made, prior to departure, by contacting the TVP team at
+            <a href="mailto:tvp.support@nbcuni.com">tvp.support@nbcuni.com</a>
+          </p>
+        </div>
+
+        <p>By clicking 'Submit' you agree to the NBC Universal Policy and its guidelines.</p>
+        <button class="btn btn-primary btn-lrg btn-block">Submit</button>
+    </form>
+    </div>
+    <% include ../partials/footer %>
