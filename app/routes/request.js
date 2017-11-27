@@ -47,10 +47,25 @@ router.post('/', (req, res) => {
             }
             console.log('Message sent: %s', info.messageId);
           });
+          res.redirect(`/request/${request._id}`);
         }
       });
     }
   });
+});
+
+router.get('/:id', (req, res) => {
+  Request.findById(req.params.id, (err, request) => {
+    if (err) console.log(err);
+    else {
+      // else console.log(request);
+      res.render('orders/request', { request });
+    }
+  });
+});
+
+router.post('/search', (req, res) => {
+  res.redirect(`/request/${req.body.requestId}`);
 });
 
 module.exports = router;
