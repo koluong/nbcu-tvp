@@ -59,7 +59,7 @@
         </div>
         <!-- Department Information -->
         <div class="row">
-          <div class="col-sm-4">
+          <div class="col-sm-3">
             <div class="form-group">
               <label for="department">Department
                 <span style="color: rgb(206, 0, 0)">*</span>
@@ -78,12 +78,19 @@
               </select>
             </div>
           </div>
-          <div class="col-sm-5">
+          <div class="col-sm-2">
+            <div class="form-group">
+              <label for="location">Building Number</label>
+              <small class="form-text text-muted">If neccessary</small>
+              <input type="text" class="form-control" name="request[building]" id="location" placeholder="1440">
+            </div>
+          </div>
+          <div class="col-sm-4">
             <div class="form-group">
               <label for="location">Delivery Address
                 <span style="color: rgb(206, 0, 0)">*</span>
               </label>
-              <small class="form-text text-muted">Include building number if necessary</small>
+              <small class="form-text text-muted">Address for equipment to be delivered to</small>
               <input required type="text" class="form-control" name="request[location]" id="location" placeholder="10 Universal City Plaza, Universal City, CA 91608">
             </div>
           </div>
@@ -92,12 +99,13 @@
               <label for="isLocal">Select One
                 <span style="color: rgb(206, 0, 0)">*</span>
               </label>
+              <small class="form-text text-muted">Indicate if you are located in NBCUniversal</small>
               <select required type="checkbox" class="form-control" name="isLocal" id="isLocal">
                 <option value="" disabled selected>
-                  Located in Universal City?
+                  Located in NBCUniversal?
                 </option>
                 <option value="true">Yes</option>
-                <option value="false">No (outside Universal City)</option>
+                <option value="false">No (outside NBCUniversal)</option>
               </select>
             </div>
           </div>

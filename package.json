@@ -22,6 +22,7 @@
     "geocoder": "^0.2.3",
     "met": "0.0.3",
     "method-override": "^2.3.10",
+    "moment": "^2.19.2",
     "mongoose": "^4.13.5",
     "nodemailer": "^4.4.0",
     "nodemon": "^1.12.1",

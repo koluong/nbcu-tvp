@@ -1,0 +1,97 @@
+<% include ../partials/adminHeader %>
+  <div class="content-wrapper">
+    <div class="container-fluid">
+      <!-- Breadcrumbs-->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="/tvp-admin/dashboard">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">Requests</li>
+      </ol>
+      <div class="card mb-3">
+        <div class="card-header">
+          <i class="fa fa-table"></i> Requests</div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <th aria-sort="descending">By Date</th>
+                  <th>Name</th>
+                  <th>Production</th>
+                  <th>Address</th>
+                  <th>Equipment</th>
+                  <th>Details</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tfoot>
+                <tr>
+                  <th>By Date</th>
+                  <th>Name</th>
+                  <th>Production</th>
+                  <th>Address</th>
+                  <th>Equipment</th>
+                  <th>Details</th>
+                  <th>Status</th>
+                </tr>
+              </tfoot>
+              <tbody>
+                <% requests.forEach( request => { %>
+                  <tr>
+                    <td>
+                      <a href="/tvp-admin/requests/<%= request.id %>">
+                        <%= request.dateBy %>
+                      </a>
+
+                    </td>
+                    <td>
+                      <%= request.nameContact %>
+                    </td>
+                    <td>
+                      <%= request.production %>
+                    </td>
+                    <td>
+                      <%= request.location %>
+                    </td>
+                    <td class="requestEquipment">
+                      <%= request.equipment.toString().replace(/[{}]/g, '') %>
+                    </td>
+                    <td class="requestDetail" style="white-space: pre-line">
+                      <%= request.detail.trim() %>
+                    </td>
+                    <td>
+                      <%= request.status %>
+                    </td>
+                  </tr>
+                  <% }); %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card-footer small text-muted">Updated
+          <%= now %>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.querySelectorAll('.requestEquipment').forEach((detail) => { detail.innerHTML = detail.innerHTML.split(',').join(' --- ') });
+    </script>lace(' ', '') });
+    </script>
+    <!-- ADMIN DEPENDENCIES -->
+    <!-- Bootstrap core JavaScript-->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Page level plugin JavaScript-->
+    <script src="/vendor/chart.js/Chart.min.js"></script>
+    <script src="/vendor/datatables/jquery.dataTables.js"></script>
+    <script src="/vendor/datatables/dataTables.bootstrap4.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="/scripts/admin.min.js"></script>
+    <!-- Custom scripts for this page-->
+    <script src="/scripts/admin-datatables.min.js"></script>
+    <script src="/scripts/admin-charts.min.js"></script>
+  </div>
+  <% include ../partials/footer %>

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const moment = require('moment');
 
 const mongooseSchema = mongoose.Schema({
   nameContact: String,
@@ -47,6 +48,10 @@ const mongooseSchema = mongoose.Schema({
   detail: String,
   department: String,
   location: String,
+  building: {
+    type: String,
+    default: ''
+  },
   lat: Number,
   lng: Number,
   timeZone: String,
@@ -58,11 +63,11 @@ const mongooseSchema = mongoose.Schema({
   },
   dateCreated: {
     type: String,
-    default: Date.now()
+    default: moment().format('MMMM Do YYYY, h:mm:ss a')
   },
   status: {
     type: String,
-    defaut: 'requested'
+    default: 'requested'
   },
   activeSwitch: {
     type: Boolean,

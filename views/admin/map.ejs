@@ -1,0 +1,82 @@
+<% include ../partials/adminHeader %>
+
+  <div class="content-wrapper">
+    <div class="container-fluid" style="height: 60em">
+      <div id="map" style="height: 100%"></div>
+
+      <!-- Breadcrumbs-->
+      <!-- <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="/tvp-admin/dashboard">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">Map</li>
+      </ol>
+      <div class="card mb-3">
+        <div class="card-header">
+          <i class="fa fa-area-chart"></i> Area Chart Example</div>
+        <div class="card-body">
+          <div id="map" style="height: 100%"></div>
+        </div>
+        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+      </div> -->
+
+    </div>
+    <!-- ADMIN DEPENDENCIES -->
+    <!-- Bootstrap core JavaScript-->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Page level plugin JavaScript-->
+    <script src="/vendor/chart.js/Chart.min.js"></script>
+    <script src="/vendor/datatables/jquery.dataTables.js"></script>
+    <script src="/vendor/datatables/dataTables.bootstrap4.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="/scripts/admin.min.js"></script>
+    <!-- Custom scripts for this page-->
+    <script src="/scripts/admin-datatables.min.js"></script>
+    <script src="/scripts/admin-charts.min.js"></script>
+  </div>
+
+  <script>let locations = [];</script>
+
+  <% requestsLocation.forEach(request => {  %>
+    <script>
+      locations.push({ lat: <%= request.lat %>, lng: <%= request.lng %>});
+    </script>
+    <% }); %>
+
+      <script>
+        function initMap() {
+
+          var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 5,
+            center: { lat: 39.8283, lng: -98.5795 }
+          });
+
+          // Create an array of alphabetical characters used to label the markers.
+          var labels = '';
+
+          // Add some markers to the map.
+          // Note: The code uses the JavaScript Array.prototype.map() method to
+          // create an array of markers based on a given "locations" array.
+          // The map() method here has nothing to do with the Google Maps API.
+          var markers = locations.map(function (location, i) {
+            return new google.maps.Marker({
+              position: location,
+              label: labels[i % labels.length]
+            });
+          });
+
+          // Add a marker clusterer to manage the markers.
+          var markerCluster = new MarkerClusterer(map, markers,
+            { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
+
+        }
+
+
+      </script>
+      <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+      </script>
+      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8uqep6vu-zr8T6DXTxwt9eTRNXwdtFVw&callback=initMap"></script>
+      <% include ../partials/footer %>

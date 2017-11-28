@@ -1,6 +1,7 @@
 module.exports = function emailTemplateFunc(request) {
   return `<h1>NBCUniversal TVP Request Confirmation</h1>
     <h2>${request._id}</h2>
+    <a href="http://localhost:3000/request/${request._id}" >Click here to view request</a>
     <h3>Name - ${request.nameContact}</h3>
     <h3>${request.emailContact}</h3>
     <h3>${request.phoneContact}</h3>

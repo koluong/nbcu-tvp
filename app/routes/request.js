@@ -10,15 +10,18 @@ router.get('/new', (req, res) => {
 
 // post new request route
 router.post('/', (req, res) => {
+  const isLocal = req.body.isLocal;
   geocoder.geocode(req.body.request.location, (err, data) => {
-    if (err) console.log(err);
-    else {
+    if (err) {
+      console.log(err);
+    } else {
       req.body.request.lat = data.results[0].geometry.location.lat;
       req.body.request.lng = data.results[0].geometry.location.lng;
       req.body.request.location = data.results[0].formatted_address;
       Request.create(req.body.request, (err, request) => {
-        if (err) console.log(err);
-        else {
+        if (err) {
+          console.log(err);
+        } else {
           console.log(`New Request Created : \n ${request}`);
           // create reusable transporter object using the default SMTP transport
           const transporter = nodemailer.createTransport({

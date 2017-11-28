@@ -10,6 +10,7 @@ const config = require('./config');
 // require routes
 const indexRoutes = require('./app/routes/index');
 const requestRoutes = require('./app/routes/request');
+const adminRoutes = require('./app/routes/admin');
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.mongooseUri, { useMongoClient: true });
@@ -31,6 +32,7 @@ app.use(methodOverride('_method'));
 
 app.use('/', indexRoutes);
 app.use('/request', requestRoutes);
+app.use('/tvp-admin', adminRoutes);
 
 app.get('*', (req, res) => {
   res.send('404 Not Found');
