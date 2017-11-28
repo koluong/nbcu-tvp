@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const geocoder = require('geocoder');
 const nodemailer = require('nodemailer');
+const config = require('../../config');
 const Request = require('../models/order');
 
 // get new form route
@@ -10,7 +11,7 @@ router.get('/new', (req, res) => {
 
 // post new request route
 router.post('/', (req, res) => {
-  const isLocal = req.body.isLocal;
+  // const isLocal = req.body.isLocal;
   geocoder.geocode(req.body.request.location, (err, data) => {
     if (err) {
       console.log(err);
@@ -30,7 +31,7 @@ router.post('/', (req, res) => {
             secure: false, // true for 465, false for other ports
             auth: {
               user: 'kennyk94@live.com', // generated ethereal user
-              pass: '-' // generated ethereal password
+              pass: config.emailPassword // generated ethereal password
             }
           });
 
