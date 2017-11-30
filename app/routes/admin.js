@@ -17,7 +17,7 @@ router.get('/dashboard', (req, res) => {
   const regexp = new RegExp(`^${moment().format('MMMM Do YYYY')}`);
   Request.find({ dateCreated: regexp }, (err, requests) => {
     const newToday = requests.length;
-    res.render('admin/dashboard', { newToday });
+    res.render('admin/dashboard', { newToday, now: moment().format('MMMM Do YYYY, h:mm:ss a') });
   });
 });
 
