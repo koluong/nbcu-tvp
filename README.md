@@ -41,7 +41,7 @@ This project is currently ongoing and a live beta build will be deployed
 ## System Analysis and Design
 
 ![Alt text](https://raw.github.com/koluong/nbcu-tvp/tree/master/public/photo/system.jpg "TVP Application Architecture")
-![Alt text](https://raw.github.com/koluong/ITC-mbs/master/src/assets/leaf-map-system.png "Leaf-Map Data Flow")
+![Alt text](https://raw.githubusercontent.com/koluong/nbcu-tvp/tree/master/public/photo/system.jpg "Leaf-Map Data Flow")
 
 ## Technical Documentation
 
