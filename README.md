@@ -17,6 +17,27 @@ This project is currently ongoing and a live beta build will be deployed
 
 ## Application Features
 
+### User Interface
+
+* **Form**
+
+  This is the online form that users use to request equipment from TVP.
+
+* **Search bar**
+
+  Users/Admin can search for a specific request from the database.
+
+* **Map**
+
+  This is the instance of Google Maps that will be generated every time the user
+  searches for an request. The user/admin is able to see a marker or cluster of
+  the request(s) location.
+
+* **Admin Console**
+
+  This is the password protected admin console. From here, an admin can view,
+  update, and close requests. There is mapping and reporting functionality.
+
 ## System Analysis and Design
 
 ## Technical Documentation
