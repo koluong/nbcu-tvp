@@ -40,6 +40,8 @@ This project is currently ongoing and a live beta build will be deployed
 
 ## System Analysis and Design
 
+![Alt text](https://github.com/koluong/nbcu-tvp/tree/master/public/photo/system.png "TVP Application Architecture")
+
 ## Technical Documentation
 
 ### [React](https://reactjs.org)
