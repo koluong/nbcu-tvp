@@ -14,7 +14,11 @@ router.post('/', (req, res) => {
 });
 
 router.get('/dashboard', (req, res) => {
-  res.render('admin/dashboard');
+  const regexp = new RegExp(`^${moment().format('MMMM Do YYYY')}`);
+  Request.find({ dateCreated: regexp }, (err, requests) => {
+    const newToday = requests.length;
+    res.render('admin/dashboard', { newToday });
+  });
 });
 
 router.get('/map', (req, res) => {
@@ -94,10 +98,21 @@ router.put('/requests/:id/updateswitch', (req, res) => {
   );
 });
 
-router.post('/requests/search', (req, res) => {
-  res.redirect(`/tvp-admin/requests/${req.body.requestId}`);
+// search routes
+router.get('/requests/search/results', (req, res) => {
+  res.send(req.body);
+  // res.render('admin/results');
 });
 
+router.get('/requests/search/today', (req, res) => {
+  const regexp = new RegExp(`^${moment().format('MMMM Do YYYY')}`);
+  Request.find({ dateCreated: regexp }, (err, requests) => {
+    const now = moment().format('MMMM Do YYYY, h:mm:ss a');
+    res.render('admin/results', { requests, now });
+  });
+});
+
+// report routes
 router.get('/requests/report/all', (req, res) => {
   Request.find({})
     .sort({ dateCreated: 'desc' })
