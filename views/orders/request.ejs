@@ -3,7 +3,193 @@
     <br>
     <h1>Request Confirmation</h1>
     <hr>
-    <%= request%>
-  </div>
+    <div class="row">
+      <div disabled style="margin-right:1.5em; margin-left:1em" class="btn <%= request.activeSwitch === true ? 'btn-success' : 'btn-danger' %>"><%= request.activeSwitch === true ? 'Open' : 'Closed' %></div><h3><%= request.id %></h3>     
+    </div>
+    <br>
+    <div class="progress">
+      <div class="progress-bar" role="progressbar" style="width: <%= request.status === 'requested' ? '25%' : request.status === 'confirmed' ? '50%' : request.status === 'shipped' ? '75%' : '100%' %>;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%= request.status.toUpperCase() %></div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="card">
+          <h4 class="card-header">Created</h4>
+          <div class="card-body">
+            <p class="card-text"><%= request.dateCreated %></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card">
+          <h4 class="card-header">Date Requested For</h4>
+          <div class="card-body">
+            <p class="card-text"><%= request.dateBy %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="card">
+          <h4 class="card-header">Name</h4>
+          <div class="card-body">
+            <p class="card-text"><%= request.nameContact %></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card">
+          <h4 class="card-header">Email</h4>
+          <div class="card-body">
+            <p class="card-text"><%= request.emailContact %></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card">
+          <h4 class="card-header">Phone</h4>
+          <div class="card-body">
+            <p class="card-text"><%= request.phoneContact %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="card">
+          <h4 class="card-header">Production</h4>
+          <div class="card-body">
+            <p class="card-text"><%= request.production %></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card">
+          <h4 class="card-header">Production Email</h4>
+          <div class="card-body">
+            <p class="card-text"><%= request.productionEmail %></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card">
+          <h4 class="card-header">Department</h4>
+          <div class="card-body">
+            <p class="card-text"><%= request.department %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-sm-2">
+        <div class="card">
+          <h4 class="card-header">Building</h4>
+          <div class="card-body">
+            <p class="card-text"><%= request.building %>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card">
+          <h4 class="card-header">Address</h4>
+          <div class="card-body">
+            <p class="card-text"><%= request.location %>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card">
+          <h4 class="card-header">Business Division</h4>
+          <div class="card-body">
+            <p class="card-text"><%= request.businessDivision %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="card">
+    <h4 class="card-header">
+        Equipment
+      </h4>
+    <div class="card-body">
+      
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Mac Desktop</th>
+            <th scope="col">Mac Laptop</th>
+            <th scope="col">PC Desktop</th>
+            <th scope="col">PC Laptop</th>
+            <th scope="col">Printer</th>
+            <th scope="col">Monitor</th>
+            <th scope="col">iPad</th>
+            <th scope="col">Television</th>
+          </tr>
+        </thead>
+        <tbody>
+          <td><%= request.equipment.macDesktop %></td>
+          <td><%= request.equipment.macLaptop %></td>
+          <td><%= request.equipment.pcDesktop %></td>
+          <td><%= request.equipment.pcLaptop %></td>
+          <td><%= request.equipment.printer %></td>
+          <td><%= request.equipment.monitor %></td>
+          <td><%= request.equipment.ipad %></td>
+          <td><%= request.equipment.tv %></td>
+        </tbody>
+      </table>
+    </div>      
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+        <h4 class="card-header">
+          Details
+        </h4>
+          <ul class="list-group list-group-flush">
+            <% request.detail.split('\r\n').forEach( (each) => { %>
+              <li class="list-group-item"><%= each %></li>
+            <% }) %>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div id="map" style="height: 400px;width: 100%;">
+        </div>
+      </div>
+    </div>
+    <br>
+    <hr>
+    <div class="card">
+      <h4 class="card-header">
+        Notes
+      </h4>
+      <div class="card-body">
+        <p class="card-text"><%= request.note === 'none' ? 'None so far - look out for updates!' : request.note %></p>
+      </div>
+      <div class="card-footer text-muted">
+        Updated on <%= request.noteTime %>
+      </div>
+    </div>
+    <br>
+    
 
+  <script>
+      function initMap() {
+        var uluru = {lat: <%= request.lat %>, lng: <%= request.lng %>};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8uqep6vu-zr8T6DXTxwt9eTRNXwdtFVw&callback=initMap"></script>
   <% include ../partials/footer %>

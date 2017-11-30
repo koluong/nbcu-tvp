@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const flash = require('connect-flash');
 const methodOverride = require('method-override');
+const json2xls = require('json2xls');
 
 const config = require('./config');
 
@@ -29,6 +30,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.use(express.static(`${__dirname}/public`));
 app.use(methodOverride('_method'));
+app.use(json2xls.middleware);
+
+app.use((req, res, next) => {
+  res.locals.error = req.flash('error');
+  res.locals.success = req.flash('success');
+  next();
+});
 
 app.use('/', indexRoutes);
 app.use('/request', requestRoutes);

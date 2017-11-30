@@ -8,6 +8,9 @@
         </li>
         <li class="breadcrumb-item active">Requests</li>
       </ol>
+      <form action="/tvp-admin/requests/report/all" method="get">
+        <button type="submit" class="btn btn-success" style="margin-bottom: 1em;">Generate Report - All</button>
+      </form>
       <div class="card mb-3">
         <div class="card-header">
           <i class="fa fa-table"></i> Requests</div>
@@ -16,7 +19,8 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
-                  <th aria-sort="descending">By Date</th>
+                  <th aria-sort="descending">Created</th>
+                  <th>Due</th>
                   <th>Name</th>
                   <th>Production</th>
                   <th>Address</th>
@@ -27,7 +31,8 @@
               </thead>
               <tfoot>
                 <tr>
-                  <th>By Date</th>
+                  <th aria-sort="descending">Created</th>
+                  <th>Due</th>
                   <th>Name</th>
                   <th>Production</th>
                   <th>Address</th>
@@ -39,11 +44,13 @@
               <tbody>
                 <% requests.forEach( request => { %>
                   <tr>
-                    <td>
+                  <td>
                       <a href="/tvp-admin/requests/<%= request.id %>">
-                        <%= request.dateBy %>
+                        <%= request.dateCreated %>
                       </a>
-
+                    </td>
+                    <td>                  
+                      <%= request.dateBy %>
                     </td>
                     <td>
                       <%= request.nameContact %>
@@ -60,9 +67,23 @@
                     <td class="requestDetail" style="white-space: pre-line">
                       <%= request.detail.trim() %>
                     </td>
+                    <% if (request.activeSwitch === true) { %>
                     <td>
-                      <%= request.status %>
+                      <form action="/tvp-admin/requests/<%= request.id %>/updatestatus?_method=put" method="post">
+                        <select name="status" class="form-control">
+                          <option disabled selected><%= request.status %></option>
+                          <option value="confirmed">confirmed</option>
+                          <option value="shipped">shipped</option>
+                        </select>
+                        <hr>
+                        <button type="submit" class="btn btn-primary" style="" >Update</button>
+                      </form>
                     </td>
+                    <%} else {%>
+                    <td>
+                      Closed
+                    </td>
+                    <% } %>
                   </tr>
                   <% }); %>
               </tbody>
@@ -73,10 +94,13 @@
           <%= now %>
         </div>
       </div>
+      <form>
+        
+      </form>
     </div>
     <script>
       document.querySelectorAll('.requestEquipment').forEach((detail) => { detail.innerHTML = detail.innerHTML.split(',').join(' --- ') });
-    </script>lace(' ', '') });
+    </script>
     </script>
     <!-- ADMIN DEPENDENCIES -->
     <!-- Bootstrap core JavaScript-->

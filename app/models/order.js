@@ -61,6 +61,10 @@ const mongooseSchema = mongoose.Schema({
     type: String,
     default: 'none'
   },
+  noteTime: {
+    type: String,
+    default: moment().format('MMMM Do YYYY, h:mm:ss a')
+  },
   dateCreated: {
     type: String,
     default: moment().format('MMMM Do YYYY, h:mm:ss a')

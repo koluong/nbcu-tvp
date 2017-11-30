@@ -38,7 +38,7 @@ router.get('/requests', (req, res) => {
         request.detail = request.detail.replace('', '');
       });
 
-      const now = moment().format('MMM Do YY, h:mm:ss a');
+      const now = moment().format('MMMM Do YYYY, h:mm:ss a');
       res.render('admin/requests', { requests, now });
     }
   });
@@ -54,8 +54,106 @@ router.get('/requests/:id', (req, res) => {
   });
 });
 
+router.put('/requests/:id/updatestatus', (req, res) => {
+  Request.findByIdAndUpdate(
+    req.params.id,
+    { $set: { status: req.body.status } },
+    (err, request) => {
+      if (err) console.log(err);
+      req.flash('success', `${request.id} status updated to '${req.body.status}'`);
+      res.redirect('back');
+    }
+  );
+});
+
+router.put('/requests/:id/updatenote', (req, res) => {
+  Request.findByIdAndUpdate(
+    req.params.id,
+    { $set: { note: req.body.note } },
+    { noteTime: moment().format('MMMM Do YYYY, h:mm:ss a') },
+    (err, request) => {
+      if (err) console.log(err);
+      req.flash('success', `${request.id} updated note'`);
+      res.redirect(`/tvp-admin/requests/${req.params.id}`);
+    }
+  );
+});
+
+router.put('/requests/:id/updateswitch', (req, res) => {
+  Request.findByIdAndUpdate(
+    req.params.id,
+    { $set: { activeSwitch: req.body.switch } },
+    (err, request) => {
+      if (err) console.log(err);
+      req.flash(
+        'success',
+        req.body.switch === true ? `${request.id} closed` : `${request.id} opened`
+      );
+      res.redirect(`/tvp-admin/requests/${req.params.id}`);
+    }
+  );
+});
+
 router.post('/requests/search', (req, res) => {
   res.redirect(`/tvp-admin/requests/${req.body.requestId}`);
+});
+
+router.get('/requests/report/all', (req, res) => {
+  Request.find({})
+    .sort({ dateCreated: 'desc' })
+    .exec((err, requests) => {
+      if (err) console.log(err);
+      else {
+        const data = requests.map(request => ({
+          ID: request.id,
+          Active: request.activeSwitch,
+          Status: request.status,
+          DateCreated: request.dateCreated,
+          DueDate: request.dateBy,
+          Name: request.nameContact,
+          Email: request.emailContact,
+          Phone: request.phoneContact,
+          Production: request.production,
+          ProductionEmail: request.productionEmail,
+          ProductionPhone: request.productionPhone,
+          Department: request.department,
+          BusinessDivision: request.businessDivision,
+          Building: request.building,
+          Location: request.location,
+          Equipment: request.equipment,
+          Detail: request.detail
+        }));
+        console.log(data);
+        res.xls(`${moment().format('MMMM Do YYYY')}-tvp-report-all.xlsx`, data);
+      }
+    });
+
+  // Request.find({}, (err, requests) => {
+  //   if (err) console.log(err);
+  //   else {
+  //     const data = requests.map(request => ({
+  //       ID: request.id,
+  //       Active: request.activeSwitch,
+  //       Status: request.status,
+  //       DateCreated: request.dateCreated,
+  //       DueDate: request.dateBy,
+  //       Name: request.nameContact,
+  //       Email: request.emailContact,
+  //       Phone: request.phoneContact,
+  //       Production: request.production,
+  //       ProductionEmail: request.productionEmail,
+  //       ProductionPhone: request.productionPhone,
+  //       Department: request.department,
+  //       BusinessDivision: request.businessDivision,
+  //       Building: request.building,
+  //       Location: request.location,
+  //       Equipment: request.equipment,
+  //       Detail: request.detail
+  //     }));
+  //     console.log(data);
+  //     res.xls(`${moment().format('MMMM Do YYYY')}-tvp-report-all.xlsx`, data);
+  //   }
+  // });
 });
 
 module.exports = router;
