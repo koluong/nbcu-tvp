@@ -40,7 +40,7 @@ This project is currently ongoing and a live beta build will be deployed
 
 ## System Analysis and Design
 
-![Alt text](https://raw.github.com/koluong/nbcu-tvp/tree/master/public/photo/system.png "TVP Application Architecture")
+![Alt text](https://raw.githubusercontent.com/koluong/nbcu-tvp/tree/master/public/photo/system.png "TVP Application Architecture")
 
 ## Technical Documentation
 
