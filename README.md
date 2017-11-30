@@ -15,6 +15,31 @@ This project is currently ongoing and a live beta build will be deployed
 
 ## Understanding the Business
 
+Formed May 12, 2004 after the merger of National Broadcasting Company and
+Universal Entertainment, NBCUniversal (NBCU) remains one of the largest
+multinational media and entertainment companies. The NBCU campus in Universal
+City, California deals heavily with the production and development its studio
+entertainment, interactive products and its amusement park. The Television
+Production IT (TVP) team within NBCUniversal serves as the primary IT support
+for television entertainment production teams including NBC TV Network,
+Universal Television, Universal Cable Productions and other peripheral
+television groups. The TVP team is responsible for configuring computer systems
+and networks for these television groups as well as providing technology support
+for their clients.
+
+Most of the work the TVP team does is managing and tracking equipment requests,
+inventory and support requests. A lot of this is done through email, Google
+forms, Excel and ServiceNow. This represents problems for the TVP admin,
+particularly in transferring data from emails and forms onto an Excel sheet and
+onto ServiceNow. Currently, there is no database infrastructure set up to hold
+preliminary request data, and the onus falls onto the TVP admin to structure and
+maintain the data on an Excel sheet. Because of this, there are many pain points
+prone human errors.\
+Also, currently there is no efficient way to track equipment, especially those that
+are outside Universal City. There is no efficient way to search for equipment grouped
+by location or request. Due to this, there exists no quick way to run a comprehensive
+management report.
+
 ## Application Features
 
 ### User Interface
