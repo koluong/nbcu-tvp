@@ -106,10 +106,13 @@ router.get('/requests/search/results', (req, res) => {
 
 router.get('/requests/search/today', (req, res) => {
   const regexp = new RegExp(`^${moment().format('MMMM Do YYYY')}`);
-  Request.find({ dateCreated: regexp }, (err, requests) => {
-    const now = moment().format('MMMM Do YYYY, h:mm:ss a');
-    res.render('admin/results', { requests, now });
-  });
+
+  Request.find({ dateCreated: regexp })
+    .sort({ dateCreated: 'desc' })
+    .exec((err, requests) => {
+      const now = moment().format('MMMM Do YYYY, h:mm:ss a');
+      res.render('admin/results', { requests, now });
+    });
 });
 
 // report routes
